@@ -1,0 +1,48 @@
+{
+    "name": "navdatabase.amx.amxceseriesinterface",
+    "displayName": "NAVDatabase.Amx.AmxCeSeriesInterface",
+    "version": "0.0.0",
+    "keywords": [
+        "amx",
+        "netlinx",
+        "harman",
+        "module"
+    ],
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Norgate-AV/NAVDatabase.Amx.AmxCeSeriesInterface.git"
+    },
+    "bugs": {
+        "url": "https://github.com/Norgate-AV/NAVDatabase.Amx.AmxCeSeriesInterface/issues"
+    },
+    "engines": {
+        "node": ">=18"
+    },
+    "scripts": {
+        "build": "pwsh ./build.ps1",
+        "commit": "git-cz",
+        "prepare": "husky",
+        "pretty:fix": "prettier --write .",
+        "doctoc": "doctoc --title '## Contents 📖' README.md",
+        "contrib:add": "all-contributors add",
+        "contrib:generate": "all-contributors generate",
+        "contrib:check": "all-contributors check"
+    },
+    "devDependencies": {
+        "@commitlint/cli": "^19.0.3",
+        "@commitlint/config-conventional": "^19.0.3",
+        "@norgate-av/genlinx": "^2.2.1",
+        "@semantic-release/changelog": "^6.0.3",
+        "@semantic-release/exec": "^6.0.3",
+        "@semantic-release/git": "^10.0.1",
+        "all-contributors-cli": "^6.24.0",
+        "commitizen": "^4.3.0",
+        "cz-conventional-changelog": "3.3.0",
+        "doctoc": "^2.2.1",
+        "husky": "^9.0.11",
+        "lint-staged": "^15.2.2",
+        "prettier": "^3.2.5",
+        "semantic-release": "^23.0.2"
+    }
+}
