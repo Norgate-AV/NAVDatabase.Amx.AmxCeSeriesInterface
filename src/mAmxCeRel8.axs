@@ -60,6 +60,9 @@ constant char DELIMITER[] = {NAV_LF_CHAR}
 constant long TL_SOCKET_CHECK   = 1
 constant long TL_HEARTBEAT      = 2
 
+constant long TL_SOCKET_CHECK_INTERVAL[] = { 3000 }
+constant long TL_HEARTBEAT_INTERVAL[] = { 20000 }
+
 constant integer RELAY_CHANNELS[] = { 1, 2, 3, 4, 5, 6, 7, 8 }
 
 (***********************************************************)
@@ -71,9 +74,6 @@ DEFINE_TYPE
 (*               VARIABLE DEFINITIONS GO BELOW             *)
 (***********************************************************)
 DEFINE_VARIABLE
-
-volatile long socketCheck[] =   { 3000 }
-volatile long heartbeat[] = { 20000 }
 
 volatile _NAVStateBoolean state[8]
 
@@ -238,7 +238,7 @@ define_function NAVModulePropertyEventCallback(_NAVModulePropertyEvent event) {
             module.Device.SocketConnection.Port = HCONTROL_IP_PORT
 
             NAVTimelineStart(TL_SOCKET_CHECK,
-                                socketCheck,
+                                TL_SOCKET_CHECK_INTERVAL,
                                 TIMELINE_ABSOLUTE,
                                 TIMELINE_REPEAT)
         }
@@ -304,7 +304,7 @@ data_event[dvPort] {
         module.Device.SocketConnection.IsConnected = true
 
         NAVTimelineStart(TL_HEARTBEAT,
-                            heartbeat,
+                            TL_HEARTBEAT_INTERVAL,
                             TIMELINE_ABSOLUTE,
                             TIMELINE_REPEAT)
     }
