@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.2](https://github.com/Norgate-AV/NAVDatabase.Amx.AmxCeSeriesInterface/compare/v1.0.1...v1.0.2) (2025-02-16)
+
+### 🚀 Performance
+
+- move timeline arrays to constant ([c683e96](https://github.com/Norgate-AV/NAVDatabase.Amx.AmxCeSeriesInterface/commit/c683e962396503829959336c241f975eff28cc0a))
+
 ## [1.0.1](https://github.com/Norgate-AV/NAVDatabase.Amx.AmxCeSeriesInterface/compare/v1.0.0...v1.0.1) (2025-01-17)
 
 ### 🐛 Bug Fixes
