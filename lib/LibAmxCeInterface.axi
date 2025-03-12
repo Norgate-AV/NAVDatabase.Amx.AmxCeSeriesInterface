@@ -1,7 +1,7 @@
 PROGRAM_NAME='LibAmxCeInterface'
 
 (***********************************************************)
-#include 'NAVFoundation.Core.axi'
+#include 'NAVFoundation.Core.h.axi'
 
 /*
  _   _                       _          ___     __

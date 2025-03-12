@@ -12,6 +12,8 @@ MODULE_NAME='mAmxCeRel8'    (
 #include 'NAVFoundation.SocketUtils.axi'
 #include 'NAVFoundation.ArrayUtils.axi'
 #include 'NAVFoundation.StringUtils.axi'
+#include 'NAVFoundation.TimelineUtils.axi'
+#include 'NAVFoundation.ErrorLogUtils.axi'
 #include 'LibAmxCeInterface.axi'
 
 /*
@@ -208,6 +210,7 @@ define_function Init() {
     }
 
     module.Device.IsInitialized = true
+    UpdateFeedback()
 }
 
 
@@ -215,9 +218,11 @@ define_function CommunicationTimeOut(integer timeout) {
     cancel_wait 'TimeOut'
 
     module.Device.IsCommunicating = true
+    UpdateFeedback()
 
     wait (timeout * 10) 'TimeOut' {
         module.Device.IsCommunicating = false
+        UpdateFeedback()
     }
 }
 
@@ -226,6 +231,7 @@ define_function Reset() {
     module.Device.SocketConnection.IsConnected = false
     module.Device.IsCommunicating = false
     module.Device.IsInitialized = false
+    UpdateFeedback()
 
     NAVTimelineStop(TL_HEARTBEAT)
 }
@@ -283,6 +289,13 @@ define_function HandleChannelEvent(integer channel, char state) {
 }
 
 
+define_function UpdateFeedback() {
+    [vdvObject, NAV_IP_CONNECTED]	= (module.Device.SocketConnection.IsConnected)
+    [vdvObject, DEVICE_COMMUNICATING] = (module.Device.IsCommunicating)
+    [vdvObject, DATA_INITIALIZED] = (module.Device.IsInitialized)
+}
+
+
 (***********************************************************)
 (*                STARTUP CODE GOES BELOW                  *)
 (***********************************************************)
@@ -302,6 +315,7 @@ data_event[dvPort] {
                     "'mAmxCeRel8 => [', NAVDeviceToString(data.device), ']: Online'")
 
         module.Device.SocketConnection.IsConnected = true
+        UpdateFeedback()
 
         NAVTimelineStart(TL_HEARTBEAT,
                             TL_HEARTBEAT_INTERVAL,
@@ -362,13 +376,6 @@ timeline_event[TL_SOCKET_CHECK] { MaintainSocketConnection() }
 
 timeline_event[TL_HEARTBEAT] {
     SendString(BuildRelayCommand(COMMAND_TYPE_GET, 8, ''))
-}
-
-
-timeline_event[TL_NAV_FEEDBACK] {
-    [vdvObject, NAV_IP_CONNECTED]	= (module.Device.SocketConnection.IsConnected)
-    [vdvObject, DEVICE_COMMUNICATING] = (module.Device.IsCommunicating)
-    [vdvObject, DATA_INITIALIZED] = (module.Device.IsInitialized)
 }
 
 
