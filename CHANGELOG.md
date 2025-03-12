@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.0](https://github.com/Norgate-AV/NAVDatabase.Amx.AmxCeSeriesInterface/compare/v1.1.0...v1.2.0) (2025-03-12)
+
+### 🌟 Features
+
+- update to support NAVFoundation.Amx v2.0.0 ([80d50ee](https://github.com/Norgate-AV/NAVDatabase.Amx.AmxCeSeriesInterface/commit/80d50eee8e76e03e9c2034547e7ed19004cef24b))
+
 ## [1.1.0](https://github.com/Norgate-AV/NAVDatabase.Amx.AmxCeSeriesInterface/compare/v1.0.2...v1.1.0) (2025-02-17)
 
 ### 🌟 Features
