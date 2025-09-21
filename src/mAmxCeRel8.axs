@@ -77,6 +77,7 @@ DEFINE_TYPE
 (***********************************************************)
 DEFINE_VARIABLE
 
+volatile _NAVModule module
 volatile _NAVStateBoolean state[8]
 
 (***********************************************************)
@@ -300,6 +301,7 @@ define_function UpdateFeedback() {
 (*                STARTUP CODE GOES BELOW                  *)
 (***********************************************************)
 DEFINE_START {
+    NAVModuleInit(module)
     create_buffer dvPort, module.RxBuffer.Data
     module.Device.SocketConnection.Socket = dvPort.PORT
 }
